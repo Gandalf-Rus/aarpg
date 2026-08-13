@@ -1,12 +1,15 @@
-class_name EnemyStateMachine extends Node
+class_name StateMachine extends Node
 
-var states : Array[ EnemyState ]
-var prev_state : EnemyState
-var cur_state : EnemyState
+@export var handles_input: bool = false
+
+var states : Array[ State ]
+var prev_state : State
+var cur_state : State
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
+	set_process_input(handles_input)
 	pass
 
 
@@ -18,20 +21,22 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	change_state( cur_state.physics( delta ) )
 	pass
+	
+func _input(event: InputEvent) -> void:
+	change_state( cur_state.handle_input( event ) )
+	pass
 
 
-func initialize( _enemy : Enemy ) -> void:
+func initialize( _character : Character ) -> void:
 	states = []
 	
 	for c in get_children():
-		if c is EnemyState:
+		if c is State:
 			states.append(c)
 	
 	for s in states:
-		s.enemy = _enemy
-		s.state_machine = self
+		s.character = _character
 		s.init()
-		
 		
 	if states.size() > 0:
 		change_state( states[0] )
@@ -40,7 +45,7 @@ func initialize( _enemy : Enemy ) -> void:
 	pass
 
 
-func change_state( new_state : EnemyState ) -> void:
+func change_state( new_state : State ) -> void:
 	if new_state == null || new_state not in states || new_state == cur_state:
 		return
 	

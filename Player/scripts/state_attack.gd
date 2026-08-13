@@ -1,4 +1,4 @@
-class_name StateAttack extends StateOld
+class_name StateAttack extends State
 
 var attacking : bool = false
 
@@ -9,16 +9,16 @@ var attacking : bool = false
 @onready var attack_effect_anim_player: AnimationPlayer = $"../../Sprite2D/AttackEffectSprite/AnimationPlayer"
 @onready var audio: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
 
-@onready var walk: StateOld = $"../Walk"
-@onready var idle: StateOld = $"../Idle"
+@onready var walk: State = $"../Walk"
+@onready var idle: State = $"../Idle"
 
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
-## what happens when the player enter this StateOld? 
-func Enter() -> void:
-	player.UpdateAnimation("attack")
-	attack_effect_anim_player.play("attack" + "_" + player.GetAnimationDirection())
-	animation_player.animation_finished.connect( EndAttack )
+## what happens when the player enter this state? 
+func enter() -> void:
+	character.update_animation("attack")
+	attack_effect_anim_player.play("attack" + "_" + character.get_animation_direction())
+	animation_player.animation_finished.connect( end_attack )
 	
 	audio.stream = attack_sound
 	audio.pitch_scale = randf_range(0.8, 1.1)
@@ -30,32 +30,29 @@ func Enter() -> void:
 	hurt_box.monitoring = true
 	pass
 
-## what happens when the player exit this StateOld? 
-func Exit() -> void:
-	animation_player.animation_finished.disconnect( EndAttack )
+## what happens when the player exit this state? 
+func exit() -> void:
+	animation_player.animation_finished.disconnect( end_attack )
 	attacking = false
 	hurt_box.monitoring = false
 	pass
 
-## what happens during the _process update in this StateOld?
-func  Process(_delta: float) -> StateOld:
-	player.velocity -= player.velocity * decelerate_speed * _delta
+## what happens during the _process update in this state?
+func  process(_delta: float) -> State:
+	character.velocity -= character.velocity * decelerate_speed * _delta
 	
 	if attacking == false:
-		if player.direction == Vector2.ZERO:
+		if character.direction == Vector2.ZERO:
 			return idle
 		else: 
 			return walk
 	return null
 	
-## what happens during the _physics_process update in this StateOld?
-func Physics(delta: float) -> StateOld:
+## what happens during the _physics_process update in this state?
+func physics(delta: float) -> State:
 	return null
+
 	
-## what happens with _input events in this StateOld?
-func HandleInput(_event: InputEvent) -> StateOld:
-	return null
-	
-func EndAttack( _newAnimName : String ) -> void:
+func end_attack( _newAnimName : String ) -> void:
 	attacking = false
 	pass
