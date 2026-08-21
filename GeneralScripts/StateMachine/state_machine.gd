@@ -36,6 +36,7 @@ func initialize( _character : Character ) -> void:
 	
 	for s in states:
 		s.character = _character
+		s.state_machine = self
 		s.init()
 		
 	if states.size() > 0:

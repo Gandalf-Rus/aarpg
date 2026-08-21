@@ -1,6 +1,7 @@
 class_name State extends Node
 
 var character : Character
+var state_machine : StateMachine
 
 ## what happens when we initialize this state? 
 func init() -> void:

@@ -23,16 +23,19 @@ position = Vector2(111, 180)
 position = Vector2(209, 179)
 
 [node name="Plant3" parent="." unique_id=597825723 instance=ExtResource("3_m8u5f")]
-position = Vector2(302, 183)
+position = Vector2(302, 171)
 
 [node name="Plant4" parent="." unique_id=827082214 instance=ExtResource("3_m8u5f")]
 position = Vector2(302, 211)
 
 [node name="Plant5" parent="." unique_id=893461166 instance=ExtResource("3_m8u5f")]
-position = Vector2(302, 243)
+position = Vector2(302, 252)
 
 [node name="Plant6" parent="." unique_id=735101859 instance=ExtResource("3_m8u5f")]
 position = Vector2(145, 243)
 
 [node name="Slime" parent="." unique_id=489101718 instance=ExtResource("4_is3ju")]
 position = Vector2(241, 39)
+
+[node name="Slime2" parent="." unique_id=1989650639 instance=ExtResource("4_is3ju")]
+position = Vector2(113, 210)

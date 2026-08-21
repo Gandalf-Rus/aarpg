@@ -5,8 +5,8 @@ signal DirectionChanged( new_direction : Vector2 )
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	super()
 	PlayerManager.player = self
+	super()
 	pass 
 
 

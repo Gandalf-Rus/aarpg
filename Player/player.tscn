@@ -536,7 +536,7 @@ script = ExtResource("5_qjkh3")
 [node name="Attack" type="Node" parent="StateMachine" unique_id=975308543]
 script = ExtResource("6_g6k8r")
 attack_sound = ExtResource("8_rgyib")
-decelerate_speed = 5.5
+decelerate_speed = 7.5
 
 [node name="Audio" type="Node2D" parent="." unique_id=1871455919]
 

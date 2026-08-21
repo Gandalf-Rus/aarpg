@@ -1,0 +1,39 @@
+class_name EnemyStateDestroy extends EnemyState
+
+@export var anim_name : String = "destroy"
+@export var knockback_speed : float = 200.0
+@export var decelerate_speed : float = 10.0
+
+var _direction : Vector2
+
+func init() -> void:
+	super()
+	enemy.enemy_destroyed.connect( _on_enemy_destroyed )
+
+## what happens when the enemy enter this state? 
+func enter() -> void:
+	character.invulnerable = true
+
+	_direction = character.global_position.direction_to( enemy.player.global_position )
+	
+	character.set_cardinal_direction( _direction )
+	character.velocity = _direction * -knockback_speed
+	
+	character.update_animation( anim_name )
+	character.animation_player.animation_finished.connect( _on_animation_finished )
+	pass
+
+
+func  physics(_delta: float) -> State:
+	character.velocity -= character.velocity * decelerate_speed * _delta
+	return null
+	
+
+func _on_enemy_destroyed() -> void:
+	state_machine.change_state( self )
+	pass
+	
+
+func _on_animation_finished( _a : String ) -> void:
+	character.queue_free()
+	pass

@@ -1,4 +1,4 @@
-class_name EnemyStateWander extends State
+class_name EnemyStateWander extends EnemyState
 
 @export var anim_name : String = "walk"
 @export var walk_speed : float = 20.0

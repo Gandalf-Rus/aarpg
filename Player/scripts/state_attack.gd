@@ -33,8 +33,9 @@ func enter() -> void:
 ## what happens when the player exit this state? 
 func exit() -> void:
 	animation_player.animation_finished.disconnect( end_attack )
-	attacking = false
 	hurt_box.monitoring = false
+	attacking = false
+	
 	pass
 
 ## what happens during the _process update in this state?
@@ -46,10 +47,6 @@ func  process(_delta: float) -> State:
 			return idle
 		else: 
 			return walk
-	return null
-	
-## what happens during the _physics_process update in this state?
-func physics(delta: float) -> State:
 	return null
 
 	

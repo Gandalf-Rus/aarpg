@@ -1,6 +1,8 @@
 class_name Character extends CharacterBody2D
 
 signal direction_changed( new_direction : Vector2 )
+signal character_damaged(  )
+
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
