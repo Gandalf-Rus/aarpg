@@ -7,7 +7,7 @@ var player : Player
 
 func _ready() -> void:
 	player = PlayerManager.player
-	hit_box.damaged.connect( _take_damage )
+	hurt_box.damaged.connect( _take_damage )
 	super()
 	pass
 	

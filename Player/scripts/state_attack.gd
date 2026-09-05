@@ -12,7 +12,7 @@ var attacking : bool = false
 @onready var walk: State = $"../Walk"
 @onready var idle: State = $"../Idle"
 
-@onready var hurt_box: HurtBox = %AttackHurtBox
+@onready var hit_box: HitBox = %AttackHitBox
 
 ## what happens when the player enter this state? 
 func enter() -> void:
@@ -27,13 +27,13 @@ func enter() -> void:
 	attacking = true
 	
 	await get_tree().create_timer( 0.08 ).timeout
-	hurt_box.monitoring = true
+	hit_box.monitoring = true
 	pass
 
 ## what happens when the player exit this state? 
 func exit() -> void:
 	animation_player.animation_finished.disconnect( end_attack )
-	hurt_box.monitoring = false
+	hit_box.monitoring = false
 	attacking = false
 	
 	pass

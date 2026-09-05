@@ -5,7 +5,7 @@ signal DirectionChanged( new_direction : Vector2 )
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	PlayerManager.player = self
-	hit_box.damaged.connect( _take_damage )
+	hurt_box.damaged.connect( _take_damage )
 	update_hp(99)
 	super()
 	pass 
