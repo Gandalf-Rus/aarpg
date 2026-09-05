@@ -9,7 +9,8 @@
 [ext_resource type="Script" uid="uid://cgc17i2u7syqr" path="res://Enemies/scripts/states/enemy_state_idle.gd" id="5_q0lue"]
 [ext_resource type="Script" uid="uid://dbcilt8uok1vf" path="res://Enemies/scripts/states/enemy_state_wander.gd" id="6_pg00x"]
 [ext_resource type="AudioStream" uid="uid://ublhvu2q4jfm" path="res://Enemies/Slime/hit_00.wav" id="6_pydiu"]
-[ext_resource type="PackedScene" uid="uid://ci6adrkqos47e" path="res://GeneralNodes/Hitbox/HitBox.tscn" id="7_pydiu"]
+[ext_resource type="PackedScene" uid="uid://ci6adrkqos47e" path="res://GeneralNodes/Areas/Hitbox/HitBox.tscn" id="7_pydiu"]
+[ext_resource type="PackedScene" uid="uid://dcypa038yepnq" path="res://GeneralNodes/Areas/HurtBox/HurtBox.tscn" id="8_843tw"]
 [ext_resource type="Script" uid="uid://vg4keyboaghg" path="res://Enemies/scripts/states/enemy_state_stun.gd" id="11_pydiu"]
 [ext_resource type="Script" uid="uid://b08m8bfdg7v3s" path="res://Enemies/scripts/states/enemy_state_destroy.gd" id="12_2qn7y"]
 
@@ -723,14 +724,14 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_3yy2l"]
 radius = 13.038404
 
-[node name="Slime" type="CharacterBody2D" unique_id=489101718 node_paths=PackedStringArray("hit_box", "animation_player", "sprite", "state_machine")]
+[node name="Slime" type="CharacterBody2D" unique_id=489101718 node_paths=PackedStringArray("animation_player", "sprite", "state_machine", "hit_box")]
 collision_layer = 256
 collision_mask = 16
 script = ExtResource("1_t8cwk")
-hit_box = NodePath("Hitbox")
 animation_player = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")
 state_machine = NodePath("StateMachine")
+hit_box = NodePath("Hitbox")
 
 [node name="ShadowSprite2D" type="Sprite2D" parent="." unique_id=1602694757]
 modulate = Color(0.40784314, 0.17198323, 0, 1)
@@ -763,6 +764,13 @@ autoplay = &"idle_down"
 [node name="Hitbox" parent="." unique_id=37925214 instance=ExtResource("7_pydiu")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1400098411]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_3yy2l")
+debug_color = Color(0.8419788, 0.44486552, 0, 0.41960785)
+
+[node name="HurtBox" parent="." unique_id=1456269660 instance=ExtResource("8_843tw")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=890322730]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_3yy2l")
 debug_color = Color(0.8419788, 0.44486552, 0, 0.41960785)

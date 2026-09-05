@@ -2,10 +2,11 @@ class_name Player extends Character
 
 signal DirectionChanged( new_direction : Vector2 )
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	PlayerManager.player = self
+	hit_box.damaged.connect( _take_damage )
+	update_hp(99)
 	super()
 	pass 
 
@@ -19,4 +20,21 @@ func _process(delta: float) -> void:
 		Input.get_axis("left", "right"),
 		Input.get_axis("up", "down")
 	).normalized()	
+	pass
+
+func _take_damage( hit_data : HitData ) -> void:
+	if invulnerable == true:
+		return
+	update_hp( hit_data.damage )
+	if hp > 0:
+		character_damaged.emit( hit_data )
+	else:
+		character_damaged.emit( hit_data )
+		update_hp(99)
+	
+	pass
+	
+	
+func update_hp( delta : int ) -> void:
+	hp = clampi(hp + delta, 0, max_hp)
 	pass

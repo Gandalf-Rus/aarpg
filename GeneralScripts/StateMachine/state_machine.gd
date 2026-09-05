@@ -34,14 +34,16 @@ func initialize( _character : Character ) -> void:
 		if c is State:
 			states.append(c)
 	
+	if states.size() == 0:
+		return
+	
 	for s in states:
 		s.character = _character
 		s.state_machine = self
 		s.init()
 		
-	if states.size() > 0:
-		change_state( states[0] )
-		process_mode = Node.PROCESS_MODE_INHERIT 
+	change_state( states[0] )
+	process_mode = Node.PROCESS_MODE_INHERIT 
 	
 	pass
 

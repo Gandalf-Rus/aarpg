@@ -9,5 +9,10 @@ func _ready() -> void:
 
 func AreaEntered( a : Area2D ) -> void:
 	if a is HitBox:
-		a.TakeDamage( damage )
+		var hit = HitData.new(
+		damage,
+		global_position)
+		
+		a.take_damage( hit )
 	pass
+	   

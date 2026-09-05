@@ -1,20 +1,25 @@
 class_name Character extends CharacterBody2D
 
 signal direction_changed( new_direction : Vector2 )
-signal character_damaged(  )
+signal character_damaged( hit_data : HitData )
 
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
 @export var animation_player: AnimationPlayer
+@export var effect_animation_player: AnimationPlayer
 @export var sprite: Sprite2D
 @export var state_machine: StateMachine
+
+@export var hit_box : HitBox
+
+@export var hp : int = 3
+@export var max_hp : int = hp
 
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 
 var invulnerable : bool = false
-
 
 func _ready() -> void:
 	if not sprite: sprite = get_node_or_null("Sprite2D")
@@ -67,4 +72,15 @@ func get_animation_direction() -> String:
 		return "up"
 	else:
 		return "side"
+		
+
+func make_invulnerable( _duration : float = 1.0 ) -> void:
+	invulnerable = true
+	hit_box.monitorable = false
+	
+	await get_tree().create_timer( _duration ).timeout
+	
+	invulnerable = false
+	hit_box.monitorable = true
+	pass
 		

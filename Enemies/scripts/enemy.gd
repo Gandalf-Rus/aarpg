@@ -1,9 +1,6 @@
 class_name Enemy extends Character
 
-signal enemy_destroyed() 
-
-@export var hp : int = 3
-@export var hit_box : HitBox
+signal enemy_destroyed( hit_data : HitData ) 
 
 var player : Player
 
@@ -15,13 +12,13 @@ func _ready() -> void:
 	pass
 	
 
-func _take_damage( damage : int ) -> void:
+func _take_damage( hit_data : HitData ) -> void:
 	if invulnerable == true:
 		return
-	hp -= damage
+	hp -= hit_data.damage
 	if hp > 0:
-		character_damaged.emit()
+		character_damaged.emit( hit_data )
 	else:
-		enemy_destroyed.emit()
+		enemy_destroyed.emit( hit_data )
 	
 	pass
