@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://b07faq2beloka" path="res://Player/scripts/playerInteractionsHost.gd" id="10_apopc"]
 [ext_resource type="PackedScene" uid="uid://dcypa038yepnq" path="res://GeneralNodes/Areas/HitBox/HitBox.tscn" id="10_x3vf3"]
 [ext_resource type="Script" uid="uid://dtncjtjw182pm" path="res://Player/scripts/playerCamera.gd" id="11_5htga"]
-[ext_resource type="Script" uid="uid://6h6voxgomrr6" path="res://Player/scripts/state_stun.gd" id="11_dkpta"]
+[ext_resource type="Script" uid="uid://6h6voxgomrr6" path="res://Player/scripts/player_state_stun.gd" id="11_dkpta"]
 [ext_resource type="PackedScene" uid="uid://ci6adrkqos47e" path="res://GeneralNodes/Areas/Hurtbox/HurtBox.tscn" id="13_p5o4e"]
 [ext_resource type="AudioStream" uid="uid://ycss18xxpr17" path="res://Player/audio/hit_player.wav" id="14_gu6f8"]
 
@@ -667,8 +667,10 @@ script = ExtResource("6_g6k8r")
 attack_sound = ExtResource("8_rgyib")
 decelerate_speed = 7.5
 
-[node name="Stun" type="Node" parent="StateMachine" unique_id=882281863]
+[node name="Stun" type="Node" parent="StateMachine" unique_id=882281863 node_paths=PackedStringArray("next_state")]
 script = ExtResource("11_dkpta")
+invulnerable_duration = 1.0
+next_state = NodePath("../Idle")
 
 [node name="Audio" type="Node2D" parent="." unique_id=1871455919]
 

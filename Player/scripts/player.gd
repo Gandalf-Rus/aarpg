@@ -22,19 +22,15 @@ func _process(delta: float) -> void:
 	).normalized()	
 	pass
 
+
 func _take_damage( hit_data : HitData ) -> void:
 	if invulnerable == true:
 		return
-	update_hp( hit_data.damage )
+	update_hp( -hit_data.damage )
 	if hp > 0:
 		character_damaged.emit( hit_data )
 	else:
 		character_damaged.emit( hit_data )
 		update_hp(99)
 	
-	pass
-	
-	
-func update_hp( delta : int ) -> void:
-	hp = clampi(hp + delta, 0, max_hp)
 	pass

@@ -35,12 +35,12 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	pass
-	
+
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
-	
-	
+
+
 func set_cardinal_direction( _new_direction : Vector2 = Vector2.ZERO ) -> bool:
 	direction = _new_direction
 	if direction == Vector2.ZERO:
@@ -58,12 +58,14 @@ func set_cardinal_direction( _new_direction : Vector2 = Vector2.ZERO ) -> bool:
 	direction_changed.emit( new_direction )
 	
 	return true
-	
+
+
 func update_animation( state : String ) -> void:
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
 	
 	animation_player.play(state + "_" + get_animation_direction())
 	pass
+
 
 func get_animation_direction() -> String:
 	if cardinal_direction == Vector2.DOWN:
@@ -72,15 +74,19 @@ func get_animation_direction() -> String:
 		return "up"
 	else:
 		return "side"
-		
+
 
 func make_invulnerable( _duration : float = 1.0 ) -> void:
 	invulnerable = true
-	hurt_box.monitorable = false
+	hurt_box.set_deferred("monitorable", false)
 	
 	await get_tree().create_timer( _duration ).timeout
 	
 	invulnerable = false
-	hurt_box.monitorable = true
+	hurt_box.set_deferred("monitorable", true)
 	pass
-		
+
+
+func update_hp( delta : int ) -> void:
+	hp = clampi(hp + delta, 0, max_hp)
+	pass

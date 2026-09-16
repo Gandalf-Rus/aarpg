@@ -790,6 +790,7 @@ next_state = NodePath("../Idle")
 
 [node name="Stun" type="Node" parent="StateMachine" unique_id=635957397 node_paths=PackedStringArray("next_state")]
 script = ExtResource("11_pydiu")
+invulnerable_duration = 0.35
 next_state = NodePath("../Idle")
 
 [node name="Destroy" type="Node" parent="StateMachine" unique_id=559117954]

@@ -15,7 +15,7 @@ func _ready() -> void:
 func _take_damage( hit_data : HitData ) -> void:
 	if invulnerable == true:
 		return
-	hp -= hit_data.damage
+	update_hp( -hit_data.damage )
 	if hp > 0:
 		character_damaged.emit( hit_data )
 	else:
