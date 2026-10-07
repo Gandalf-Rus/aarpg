@@ -2,6 +2,7 @@ class_name Character extends CharacterBody2D
 
 signal direction_changed( new_direction : Vector2 )
 signal character_damaged( hit_data : HitData )
+signal hp_changed( hp : int, max_hp : int )
 
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
@@ -89,4 +90,5 @@ func make_invulnerable( _duration : float = 1.0 ) -> void:
 
 func update_hp( delta : int ) -> void:
 	hp = clampi(hp + delta, 0, max_hp)
+	hp_changed.emit( hp, max_hp )
 	pass

@@ -15,10 +15,15 @@ run/main_scene="res://playground.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout=""
+
 [autoload]
 
 LevelManager="*uid://3rnpe4jx7br2"
 PlayerManager="*uid://bylk02m24vgd0"
+PlayerHud="*uid://diq6rwcagwvqd"
 
 [display]
 
