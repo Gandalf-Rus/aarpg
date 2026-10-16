@@ -4,7 +4,8 @@ func _ready() -> void:
 	visible = false
 	if PlayerManager.player_set == false:
 		PlayerManager.set_player_position(global_position)
-		PlayerManager.player_set == true
+		print("spawner worked")
+		PlayerManager.player_set = true
 	
 	
 	

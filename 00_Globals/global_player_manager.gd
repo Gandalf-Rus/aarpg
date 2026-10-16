@@ -21,10 +21,20 @@ func add_player_instance() -> void:
 	player = PLAYER.instantiate()
 	add_child(player)
 	pass
-	
+
+func set_health( hp : int, max_hp : int ) -> void:
+	if hp >= max_hp:
+		printerr("max_hp must be >= than hp")
+		return
+	player.max_hp = max_hp
+	player.hp = clampi(hp, 0, max_hp)
+	player.update_hp( 0 )
+
+
 func set_player_position( _new_pos : Vector2 ) -> void:
 	if player:
 		player.global_position = _new_pos
+		print("player set")
 	pass
 
 func set_as_parent(_parent : Node2D) -> void:
