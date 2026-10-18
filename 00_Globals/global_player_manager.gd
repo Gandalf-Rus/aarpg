@@ -23,7 +23,7 @@ func add_player_instance() -> void:
 	pass
 
 func set_health( hp : int, max_hp : int ) -> void:
-	if hp >= max_hp:
+	if hp > max_hp:
 		printerr("max_hp must be >= than hp")
 		return
 	player.max_hp = max_hp
