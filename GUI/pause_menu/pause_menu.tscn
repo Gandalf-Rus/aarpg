@@ -51,6 +51,18 @@ offset_bottom = 48.0
 size_flags_horizontal = 0
 text = "[ paused ]"
 
+[node name="ItemDescription" type="Label" parent="Control" unique_id=1880347412]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 159.0
+offset_right = 216.0
+offset_bottom = 197.0
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 10
+text = "[[description description description description description description]]"
+autowrap_mode = 2
+
 [node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=2081671199]
 layout_mode = 0
 offset_left = 25.0
@@ -83,18 +95,6 @@ layout_mode = 2
 [node name="InventorySlot6" parent="Control/PanelContainer/GridContainer" unique_id=486810846 instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="ItemDescription" type="Label" parent="Control" unique_id=1880347412]
-custom_minimum_size = Vector2(8, 8)
-layout_mode = 0
-offset_left = 25.0
-offset_top = 159.0
-offset_right = 216.0
-offset_bottom = 197.0
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 10
-text = "[[description description description description description description]]"
-autowrap_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1886023480]
 layout_mode = 1
 anchors_preset = 2
@@ -115,3 +115,7 @@ text = "Save"
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "Load"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1958222144]
+volume_db = -17.5
+max_polyphony = 4

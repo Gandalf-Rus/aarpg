@@ -3,6 +3,7 @@ extends CanvasLayer
 signal shown
 signal hidden
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var button_save: Button = $Control/HBoxContainer/ButtonSave
 @onready var button_load: Button = $Control/HBoxContainer/ButtonLoad
 @onready var item_description: Label = $Control/ItemDescription
@@ -10,6 +11,7 @@ signal hidden
 var is_paused : bool = false
 
 func _ready() -> void:
+	item_description.text = ""
 	hide_pause_menu()
 	button_save.pressed.connect(_on_save_pressed)
 	button_load.pressed.connect(_on_load_pressed)
@@ -55,3 +57,8 @@ func _on_load_pressed() -> void:
 
 func update_item_description( text : String ) -> void:
 	item_description.text = text
+	
+
+func play_audio(audio : AudioStream) -> void:
+	audio_stream_player.stream = audio
+	audio_stream_player.play()

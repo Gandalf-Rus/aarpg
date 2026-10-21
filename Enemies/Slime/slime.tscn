@@ -797,4 +797,5 @@ next_state = NodePath("../Idle")
 script = ExtResource("12_2qn7y")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=146315295]
+volume_db = -7.5
 max_polyphony = 4
