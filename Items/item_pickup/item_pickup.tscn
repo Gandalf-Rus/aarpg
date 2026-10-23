@@ -1,12 +1,61 @@
 [gd_scene format=3 uid="uid://dl5vcyjj1xbno"]
 
 [ext_resource type="Script" uid="uid://3mpvk1nxua70" path="res://Items/item_pickup/item_pickup.gd" id="1_pjtoe"]
+[ext_resource type="Texture2D" uid="uid://3wsru6ck0csp" path="res://Items/sprites/items.png" id="2_uwxn1"]
+[ext_resource type="Texture2D" uid="uid://b8bduxd7punv5" path="res://Player/sprites/Shadow.png" id="2_xobfa"]
 [ext_resource type="AudioStream" uid="uid://bn0grbkxs22l1" path="res://Items/item_pickup/item_pickup.wav" id="3_xobfa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3yy2l"]
 
-[node name="ItemPickup" type="Node2D" unique_id=476064772]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6dju"]
+atlas = ExtResource("2_uwxn1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Animation" id="Animation_uwxn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xobfa"]
+resource_name = "default"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.55, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, 0), Vector2(0, -3), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uwxn1"]
+_data = {
+&"RESET": SubResource("Animation_uwxn1"),
+&"default": SubResource("Animation_xobfa")
+}
+
+[node name="ItemPickup" type="CharacterBody2D" unique_id=1069345177]
+collision_layer = 0
+collision_mask = 16
+motion_mode = 1
 script = ExtResource("1_pjtoe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1393978978]
+shape = SubResource("CircleShape2D_3yy2l")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=309305263]
 
@@ -14,6 +63,17 @@ script = ExtResource("1_pjtoe")
 shape = SubResource("CircleShape2D_3yy2l")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=297075409]
+texture = SubResource("AtlasTexture_k6dju")
+
+[node name="Shadow_Sprite2D" type="Sprite2D" parent="." unique_id=273048800]
+modulate = Color(0, 0, 0, 0.49019608)
+position = Vector2(0, 8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_xobfa")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1462293189]
 stream = ExtResource("3_xobfa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1208439510]
+libraries/ = SubResource("AnimationLibrary_uwxn1")
+autoplay = &"default"

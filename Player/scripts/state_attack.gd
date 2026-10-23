@@ -29,9 +29,10 @@ func enter() -> void:
 	attacking = true
 	
 	_attack_tween = create_tween()
-	_attack_tween.tween_interval(0.05)
+	_attack_tween.tween_interval(0.065)
 	
-	_attack_tween.tween_callback( func(): hit_box.monitoring = true )
+	if attacking:
+		_attack_tween.tween_callback( func(): hit_box.monitoring = true )
 	pass
 
 ## what happens when the player exit this state? 
