@@ -531,9 +531,11 @@ _data = {
 &"walk_up": SubResource("Animation_rgyib")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yy2l"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jd3y4"]
 radius = 9.0
-height = 32.0
+height = 24.0
 
 [sub_resource type="Animation" id="Animation_lfmf2"]
 length = 0.001
@@ -684,11 +686,20 @@ script = ExtResource("11_5htga")
 [node name="Interactions" type="Node2D" parent="." unique_id=1414392830]
 script = ExtResource("10_apopc")
 
+[node name="Area2D" type="Area2D" parent="Interactions" unique_id=77614440]
+collision_layer = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Area2D" unique_id=149632571]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_3yy2l")
+debug_color = Color(0.08202739, 0.70196074, 0, 0.41960785)
+
 [node name="Hurtbox" parent="." unique_id=37925214 instance=ExtResource("13_p5o4e")]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=366302291]
-position = Vector2(0, -12)
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_jd3y4")
 debug_color = Color(0.70196074, 0.5016551, 0, 0.41960785)
 

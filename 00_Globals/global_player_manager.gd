@@ -4,6 +4,7 @@ const PLAYER = preload("res://Player/player.tscn")
 const INVENTORY_DATA : InventoryData  = preload("res://GUI/pause_menu/inventory/player_inventory.tres")
 
 signal player_spawned(player: Player)
+signal interact_pressed
 
 var player: Player:
 	set(value):
